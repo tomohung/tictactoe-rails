@@ -10,12 +10,12 @@ class GameController < ApplicationController
   end
 
   def show
-
+    
   end
 
   def create
     
-    render :show
+    redirect_to game_show_path
   end
 
 
