@@ -14,7 +14,8 @@ class GameController < ApplicationController
   end
 
   def create
-
+    
+    render :show
   end
 
 
