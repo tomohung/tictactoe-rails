@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   root 'game#index'
 
   get 'game/index', to: 'game#index'
-  get 'game/show', to: 'game#show'
+  get 'game', to: 'game#show'
   post 'game/create', to: 'game#create'
   get 'game/over', to: 'game#over' 
   get 'game/new', to: 'game#new'

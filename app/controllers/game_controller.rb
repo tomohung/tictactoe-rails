@@ -21,7 +21,7 @@ class GameController < ApplicationController
     else
       @@game_board.again
     end
-    redirect_to game_show_path
+    redirect_to game_path
   end
   
   def over
@@ -44,7 +44,7 @@ class GameController < ApplicationController
     if @@game_board.game_is_over?
       redirect_to game_over_path
     else
-      redirect_to game_show_path
+      redirect_to game_path
     end
   end
 
