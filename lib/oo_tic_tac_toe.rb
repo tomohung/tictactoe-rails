@@ -151,19 +151,6 @@ private
     @current_user = player1
   end
   
-  def output_who_picked(value)
-    word = ""
-    case 
-    when user1.picked_numbers.include?(value)
-      word = 'x'
-    when user2.picked_numbers.include?(value)
-      word = 'o'
-    else
-      word = ' '
-    end
-    word
-  end  
-
 public
 
   def player_to_pick(picked_number)
@@ -183,66 +170,4 @@ public
     user1.picked_numbers.clear
     user2.picked_numbers.clear
   end  
-end
-
-class TicTacToeGame
-
-  attr_accessor :game_board
-
-  def initialize
-    say "Game mode: 1) Single Play. 2)Two Players."
-    mode = gets.chomp
-
-    say "Hero, enter your name:"
-    player1_name = gets.chomp
-    player1_name = "Guest" if player1_name.empty?
-
-    player1 = Player.new(player1_name)
-    if mode == "2"
-      say "Another Hero, enter your name: "
-      player2_name = gets.chomp
-      player2_name = "Anonymous" if player2_name.empty?
-      player2 = Player.new(player2_name)
-    else
-      say "#{player1_name}, come to beat Super Tomo!!"
-      player2 = Robot_Player.new("Super Tomo")
-    end
-
-    @game_board = TicTacToeBoard.new(player1, player2)
-  end
-
-  def say(message)
-    puts "=> #{message}"
-  end 
-
-  def play
-
-    loop do
-      result = ""
-      game_board.clear
-
-      loop do
-        system("clear")
-        say "Welcome to Tomo's Tic-Tac-Toe Game" 
-        game_board.show_figure
-        
-        puts "--> #{game_board.current_user.name}'s turn <--"
-        say "Choose one number (1 ~ 9):"
-
-        game_board.ask_player_to_pick
-  
-        result = game_board.game_is_over?
-        break if result
-      end
-
-      system("clear")
-      say "Result: "
-      game_board.show_figure
-      say result
-
-      puts "\n"
-      say "Play again? (y/n)"
-      break if gets.chomp.downcase == 'n'
-    end
-  end
 end

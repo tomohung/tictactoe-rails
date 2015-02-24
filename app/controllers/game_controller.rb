@@ -8,7 +8,6 @@ class GameController < ApplicationController
   before_action :host_pick, only: [:show]
 
   def index
-
   end
 
   def show
@@ -22,8 +21,7 @@ class GameController < ApplicationController
   
   def over
     @message = @@game_board.game_is_over?
-    @message = 'Game Over' if !@message
-    
+    @message = 'Game Over' if !@message    
   end
   
   def create
