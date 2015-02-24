@@ -1,30 +1,21 @@
 <div class='well'>
-  Total = <%= pluralize(count, 'Step') %>
+  <h3>Total = <%= pluralize(count, 'Step') %></h3>
 </div>
+<div class='spacer'></div>
 
 <div class='well'>
-  <div class='row'>
-    
-    <%= get_symbol(1) %>
-    <%= get_symbol(2) %>
-    <%= get_symbol(3) %>
-    
-  </div>
+  <%= render 'pick_area', number: 1 %>
+  <%= render 'pick_area', number: 2 %>
+  <%= render 'pick_area', number: 3 %>
+  <div class='spacer'></div>
+  
+  <%= render 'pick_area', number: 4 %>
+  <%= render 'pick_area', number: 5 %>
+  <%= render 'pick_area', number: 6 %>
+  <div class='spacer'></div>
 
-  <div class='row'>
-  
-    <%= get_symbol(4) %>
-    <%= get_symbol(5) %>
-    <%= get_symbol(6) %>
-  
-  </div>
-
-  <div class='row'>
-  
-    <%= get_symbol(7) %>
-    <%= get_symbol(8) %>
-    <%= get_symbol(9) %>
-  
-  </div>
-
+  <%= render 'pick_area', number: 7 %>
+  <%= render 'pick_area', number: 8 %>
+  <%= render 'pick_area', number: 9 %>
+  <div class='spacer'></div>
 </div>

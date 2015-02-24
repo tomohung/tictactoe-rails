@@ -1,36 +1,41 @@
 
-.star-six {
-  width: 0;
-  height: 0;
-  border-left: 50px solid transparent;
-  border-right: 50px solid transparent;
-  border-bottom: 100px solid red;
-  position: relative;
-}
-.star-six:after {
-  width: 0;
-  height: 0;
-  border-left: 50px solid transparent;
-  border-right: 50px solid transparent;
-  border-top: 100px solid red;
-  position: absolute;
-  content: "";
-  top: 30px;
-  left: -50px;
-}
-
-.circle {
-  width: 100px;
-  height: 100px;
-  background: red;
-  -moz-border-radius: 50px;
-  -webkit-border-radius: 50px;
-  border-radius: 50px;
-}
-
 .doughnut { 
-    border: 50px solid #f00;
-    border-radius: 100px;
-    height:100px;
-    width:100px;
+  display: inline-block;
+  border: 10px solid #f00;
+  border-radius: 50px;
+  height:50px;
+  width:50px;
+}
+
+.host_doughnut { 
+  display: inline-block;
+  border: 5px solid #fff;
+  border-radius: 30px;
+  height:60px;
+  width:60px;
+}
+
+.unpicked {
+  display: inline-block;
+  height:66px;
+  width:66px;
+  border: 2px dashed #444;
+}
+
+
+.unpicked:hover {
+  border: 10px solid #ff0;
+  border-radius: 50px;
+  height:50px;
+  width:50px;
+}
+
+.spacer {
+  height:0px;
+  width:0px;
+  border:0px;
+}
+
+.show_steps {
+  text-align: left;
 }
