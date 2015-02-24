@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   post 'game/create', to: 'game#create'
   get 'game/over', to: 'game#over' 
   get 'game/new', to: 'game#new'
+
+  resources :users
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
