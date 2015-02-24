@@ -141,7 +141,7 @@ end
 
 class TicTacToeBoard
 
-  attr_accessor :unpicked_numbers, :user1, :user2, :current_user
+  attr_accessor :unpicked_numbers, :user1, :user2, :current_user, :steps
 
 private
   def initialize(player1, player2)
@@ -149,15 +149,21 @@ private
     @user1 = player1
     @user2 = player2
     @current_user = player1
+    @steps = 0
   end
   
 public
 
   def player_to_pick(picked_number)
     @current_user.pick!(unpicked_numbers, picked_number)
-    @current_user = current_user == user1 ? user2 : user1
+    @steps += 1 if current_user_is_user1?
+    @current_user = current_user_is_user1? ? @user2 : @user1    
   end
 
+  def current_user_is_user1?
+    @current_user == @user1
+  end
+  
   def game_is_over?
     return "#{user1.name}, you win!!" if user1.get_straight_number?
     return "#{user2.name}, is the true hero!!" if user2.get_straight_number?
@@ -169,5 +175,6 @@ public
     @unpicked_numbers = TicTacToeRuler::PICK_NUMBERS.clone
     user1.picked_numbers.clear
     user2.picked_numbers.clear
+    @steps = 0
   end  
 end
