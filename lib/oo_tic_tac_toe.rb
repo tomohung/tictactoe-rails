@@ -30,22 +30,17 @@ class Player
     false
   end
 
-  def pick!(valid_numbers)
-    value = 0
-    loop do
-      value = gets.chomp.to_i
-      break if valid_numbers.include?(value)
-      puts "Input number is invalid, try again..."
-    end
-    valid_numbers.delete(value)
-    @picked_numbers << value
+  def pick!(valid_numbers, picked_number)
+    return unless valid_numbers.include? picked_number
+    valid_numbers.delete(picked_number)
+    @picked_numbers << picked_number
   end
 
 end
 
 class Robot_Player < Player
 
-  def pick!(valid_numbers)
+  def pick!(valid_numbers, choose_number)
     choose_number = nil
 
     # 1. pick number to let computer get a straight line
@@ -171,29 +166,9 @@ private
 
 public
 
-  def ask_player_to_pick
-    @current_user.pick!(unpicked_numbers)
+  def player_to_pick(picked_number)
+    @current_user.pick!(unpicked_numbers, picked_number)
     @current_user = current_user == user1 ? user2 : user1
-  end
-
-  def show_figure
-    if unpicked_numbers.size == TicTacToeRuler::PICK_NUMBERS.size
-      puts "
-       1 | 2 | 3
-      ---+---+---
-       4 | 5 | 6
-      ---+---+---
-       7 | 8 | 9
-      "
-      return
-    end
-    puts "
-       #{output_who_picked(1)} | #{output_who_picked(2)} | #{output_who_picked(3)}  
-      ---+---+---
-       #{output_who_picked(4)} | #{output_who_picked(5)} | #{output_who_picked(6)}  
-      ---+---+---
-       #{output_who_picked(7)} | #{output_who_picked(8)} | #{output_who_picked(9)}  
-     "
   end
 
   def game_is_over?
