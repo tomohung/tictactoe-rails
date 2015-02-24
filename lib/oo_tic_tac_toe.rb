@@ -165,16 +165,20 @@ public
   end
   
   def game_is_over?
-    return "#{user1.name}, you win!!" if user1.get_straight_number?
-    return "#{user2.name}, is the true hero!!" if user2.get_straight_number?
-    return "Tie Game" if unpicked_numbers.empty?
+    return user1 if user1.get_straight_number?
+    return user2 if user2.get_straight_number?
+    return 0 if unpicked_numbers.empty?
     return false
   end
 
-  def clear
+  def again
     @unpicked_numbers = TicTacToeRuler::PICK_NUMBERS.clone
     user1.picked_numbers.clear
     user2.picked_numbers.clear
-    @steps = 0
   end  
+
+  def reset
+    again
+    @steps = 0
+  end
 end

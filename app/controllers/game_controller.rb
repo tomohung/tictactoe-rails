@@ -4,7 +4,7 @@ class GameController < ApplicationController
   
   @@game_board = nil
   before_action :create_game
-  before_action :get_board_data, only: [:show, :create, :over]
+  before_action :get_board_data, only: [:show, :create, :over, :new]
   before_action :host_pick, only: [:show]
 
   def index
@@ -15,13 +15,25 @@ class GameController < ApplicationController
   end
 
   def new
-    @@game_board.clear
+    result = @@game_board.game_is_over?
+    if result == @player || result == @host
+      @@game_board.reset
+    else
+      @@game_board.again
+    end
     redirect_to game_show_path
   end
   
   def over
-    @message = @@game_board.game_is_over?
-    @message = 'Game Over' if !@message    
+    result = @@game_board.game_is_over?
+    if !result
+      @message = 'Game is Over.'
+    elsif result == 0
+      @message = 'Game is a Tie.'
+    else
+      @message = result.name + ' Win!!'
+    end
+        
   end
   
   def create
@@ -52,11 +64,11 @@ private
   def get_board_data
     @board = @@game_board
     
-    player = @board.user1
-    host = @board.user2
+    @player = @board.user1
+    @host = @board.user2
 
-    @player_picked_numbers = player.picked_numbers
-    @host_picked_numbers = host.picked_numbers
+    @player_picked_numbers = @player.picked_numbers
+    @host_picked_numbers = @host.picked_numbers
   end
 
 end
