@@ -42,7 +42,9 @@ class GameController < ApplicationController
     @picked_number = params[:id].to_i
     @board.player_to_pick(@picked_number)
 
-    if @board.game_is_over?
+    winner = @board.game_is_over?
+    if winner
+      flash[:notice] = 'INCREDIBLE!! You Defeat Titan!' if winner == @player
       render :js => "window.location = '/game/over'"
       return
     else
@@ -52,7 +54,9 @@ class GameController < ApplicationController
         end
         format.js do          
           host_pick
-          if @board.game_is_over?
+          winner = @board.game_is_over?
+          if winner
+            flash[:notice] = 'OH NO!! You are DEAD!' if winner == @host
             render :js => "window.location = '/game/over'"
           end
         end
