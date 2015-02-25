@@ -11,6 +11,7 @@ class GameRecordsController < ApplicationController
       end
     else
       flash[:error] = 'Please Login first.'
+      redirect_to login_path
     end
     redirect_to game_records_path
   end

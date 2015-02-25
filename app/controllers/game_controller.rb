@@ -35,15 +35,6 @@ class GameController < ApplicationController
     else
       @message = 'LOSE'
     end
-    
-    if logged_in? && @@game_board.game_is_over?
-      record = current_user.game_records.new(status: @message, attack_times: @@game_board.steps)
-      if !record.save
-        flash[:error] = 'Record Save Failed.'
-        redirect_to :show
-      end
-      flash[:notice] = 'You ' + @message
-    end
   end
   
   def create
