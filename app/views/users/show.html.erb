@@ -1,9 +1,6 @@
 <h2>
-  <span class="label label-default"><%= @user.username %></span>
+  <span class="label label-default"><%= @user.username %>'s History</span>
 </h2>
-<h4>
- History
-</h4>
 
 <%= render 'game_records/column_title' %>
 <%= render @user.game_records %>
