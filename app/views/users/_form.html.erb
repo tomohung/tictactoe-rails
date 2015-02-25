@@ -1,14 +1,14 @@
 
-<%= form_for @user do |f|%>
+<%= form_for @user do |f| %>
   <div class='group-control'>
-  <%= f.label :username %>
-  <%= f.text_field :username %>
+    <%= f.label :username %>
+    <%= f.text_field :username, autofocus: true %>
   </div>
 
   <div class='group-control'>
-  <%= f.label :password %>
-  <%= f.password_field :password %>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
   </div>
 
-  <%= f.submit class: 'btn btn-default' %>
+  <%= f.submit class: 'btn btn-primary' %>
 <% end %>

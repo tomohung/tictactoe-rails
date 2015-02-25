@@ -8,8 +8,19 @@
     </h3>
     <nav>
       <ul class="nav masthead-nav">
-        <li class="active"> <%= link_to 'New Game', game_new_path %></li>
-        <li><%= link_to 'New Player', new_user_path %></li>
+        <% if logged_in? %>
+          <li> <%= link_to 'New Game', game_new_path %></li>  
+          <li>
+            <%= link_to user_path(current_user) do %>
+              <%= current_user.username %>
+            <% end %>
+          </li>
+          <li><%= link_to 'Logout', logout_path, method: :delete %> </li>
+            
+        <% else %>
+          <li><%= link_to 'Login', login_path %></li>
+          <li><%= link_to 'Register', new_user_path %></li>
+        <% end %>
         <li><a href="#">About</a></li>
       </ul>
     </nav>

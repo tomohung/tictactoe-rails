@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'game#index'
 
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
+  
   get 'game/index', to: 'game#index'
   get 'game', to: 'game#show'
   post 'game/create', to: 'game#create'

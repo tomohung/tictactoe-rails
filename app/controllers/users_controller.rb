@@ -13,9 +13,10 @@ class UsersController < ApplicationController
   def create
     @user = User.new(set_params)
     if @user.save
-      
+      redirect_to root_path
     else
-
+      @errors = @user.errors.full_messages
+      render :new
     end
   end
 
@@ -33,7 +34,7 @@ class UsersController < ApplicationController
   end
 
   def set_params
-    params.require(:users).permit(:username, :password)
+    params.require(:user).permit(:username, :password)
   end
 
 end
