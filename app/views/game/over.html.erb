@@ -1,7 +1,8 @@
-<div><span class="label label-default"><%= @message %></span></div>
-
 <%= render 'game_board', count: @board.steps %>
-
+<% save_label = @board.game_is_over? !=0 ? 'Save Record' : 'Give Up' %>
 <div>
-  <h4><%= link_to 'Play Again', game_new_path, class: 'btn btn-default' %></h4>
+  <h4>
+    <%= link_to save_label, game_records_path(steps: @board.steps, status: @message), class: 'btn btn-danger', method: :post %>
+    <%= link_to 'Keep Attack', game_new_path, class: 'btn btn-primary' if @message == 'TIE' %> 
+  </h4>
 </div>

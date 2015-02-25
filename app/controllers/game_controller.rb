@@ -29,11 +29,20 @@ class GameController < ApplicationController
     if !result
       @message = 'Game is Over.'
     elsif result == 0
-      @message = 'Game is a Tie.'
+      @message = 'TIE'
+    elsif result == @player
+      @message = 'WIN'
     else
-      @message = result.name + ' Win!!'
+      @message = 'LOSE'
     end
-        
+    
+    if logged_in? && @@game_board.game_is_over?
+      record = current_user.game_records.new(status: @message, attack_times: @@game_board.steps)
+      if !record.save
+        flash[:error] = 'Record Save Failed.'
+        redirect_to :show
+      end
+    end
   end
   
   def create

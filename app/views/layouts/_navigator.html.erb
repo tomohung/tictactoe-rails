@@ -8,6 +8,7 @@
     </h3>
     <nav>
       <ul class="nav masthead-nav">
+        <li><%= link_to 'Hero Board', game_records_path %></li>
         <% if logged_in? %>
           <li> <%= link_to 'New Game', game_new_path %></li>  
           <li>
@@ -21,6 +22,7 @@
           <li><%= link_to 'Login', login_path %></li>
           <li><%= link_to 'Register', new_user_path %></li>
         <% end %>
+        
         <li><a href="#">About</a></li>
       </ul>
     </nav>

@@ -15,7 +15,10 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to root_path
     else
-      @errors = @user.errors.full_messages
+      @user.errors.full_messages.each do |msg|
+        flash[msg.to_sym] = msg
+      end
+      
       render :new
     end
   end
