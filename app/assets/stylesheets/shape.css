@@ -23,6 +23,9 @@
   border: 2px dashed #444;
 }
 
+.inline-block {
+  display: inline-block;
+}
 
 .unpicked:hover {
   border: 10px solid #f66;
@@ -30,3 +33,4 @@
   height:60px;
   width:60px;
 }
+

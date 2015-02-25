@@ -1,2 +1,9 @@
-<h4>User Profile </h4>
-<p><%= current_user.username %> </p>
+<h2>
+  <span class="label label-default"><%= @user.username %></span>
+</h2>
+<h4>
+ History
+</h4>
+
+<%= render 'game_records/column_title' %>
+<%= render @user.game_records %>

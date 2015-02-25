@@ -42,6 +42,7 @@ class GameController < ApplicationController
         flash[:error] = 'Record Save Failed.'
         redirect_to :show
       end
+      flash[:notice] = 'You ' + @message
     end
   end
   

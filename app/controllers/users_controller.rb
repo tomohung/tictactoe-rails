@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(set_params)
     if @user.save
-      redirect_to root_path
+      redirect_to game_path
     else
       @user.errors.full_messages.each do |msg|
         flash[msg.to_sym] = msg

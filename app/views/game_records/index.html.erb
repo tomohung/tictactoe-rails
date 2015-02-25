@@ -1,2 +1,23 @@
-<h4>Hero Board</h4>
-<%= render @game_records %>
+
+<ul class="nav nav-tabs">
+    <% params[:tab] = 'TIE' if !params[:tab] %>
+    <li class="<%= 'active' if params[:tab] == 'TIE' %>"><a href="#TIE" data-toggle="tab">Marathon</a></li>
+    <li class="<%= 'active' if params[:tab] == 'WIN' %>"><a href="#WIN" data-toggle="tab">Hero</a></li>
+    <li class="<%= 'active' if params[:tab] == 'LOSE' %>"><a href="#LOSE" data-toggle="tab">Loser</a></li>
+</ul>
+
+<div class="tab-content">
+
+  <%= render 'column_title' %>
+  
+  <div class="<%= if (params[:tab] == 'TIE' || !params[:tab]) then 'tab-pane active'  else 'tab-pane' end%>" id="TIE">
+    <%= render @game_records.where(status: 'TIE') %>
+  </div>
+  <div class="<%= if params[:tab] == 'WIN' then 'tab-pane active'  else 'tab-pane' end%>" id="WIN">
+    <%= render @game_records.where(status: 'WIN') %>
+  </div>
+  <div class="<%= if params[:tab] == 'LOSE' then 'tab-pane active'  else 'tab-pane' end%>" id="LOSE">
+    <%= render @game_records.where(status: 'LOSE') %>
+  </div>
+  
+</div>
