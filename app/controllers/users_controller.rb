@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(set_params)
     if @user.save
+      session[:user_id] = @user.id
       redirect_to game_path
     else
       @user.errors.full_messages.each do |msg|
