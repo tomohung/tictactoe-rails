@@ -11,21 +11,21 @@ class GameController < ApplicationController
   end
 
   def show
-    redirect_to game_over_path if @@game_board.game_is_over?
+    redirect_to game_over_path if @board.game_is_over?
   end
 
   def new
-    result = @@game_board.game_is_over?
+    result = @board.game_is_over?
     if result == @player || result == @host
-      @@game_board.reset
+      @board.reset
     else
-      @@game_board.again
+      @board.again
     end
     redirect_to game_path
   end
   
   def over
-    result = @@game_board.game_is_over?
+    result = @board.game_is_over?
     if !result
       @message = 'Game is Over.'
     elsif result == 0
@@ -39,13 +39,24 @@ class GameController < ApplicationController
   
   def create
 
-    picked_number = params[:id].to_i
-    @@game_board.player_to_pick(picked_number)
+    @picked_number = params[:id].to_i
+    @board.player_to_pick(@picked_number)
 
-    if @@game_board.game_is_over?
-      redirect_to game_over_path
+    if @board.game_is_over?
+      render :js => "window.location = '/game/over'"
+      return
     else
-      redirect_to game_path
+      respond_to do |format|
+        format.html do
+          redirect_to game_path
+        end
+        format.js do          
+          host_pick
+          if @board.game_is_over?
+            render :js => "window.location = '/game/over'"
+          end
+        end
+      end
     end
   end
 

@@ -1,0 +1,10 @@
+
+<% (1..9).each do |number| %>
+  <% if @player_picked_numbers.include? number %>
+    $('#pick_<%= number %>').html("<div class='doughnut'></div>");
+  <% elsif @host_picked_numbers.include? number %>
+    $('#pick_<%= number %>').html("<div class='host_doughnut'></div>")
+  <% end %>
+<% end %>
+
+$('#attack-times').html("Attack: <%= pluralize(@board.steps, 'time') %>")

@@ -1,9 +1,11 @@
+<div class= 'inline-block' id = 'pick_<%= number %>'>
 <% if @player_picked_numbers.include? number %>
   <div class='doughnut'></div>
 <% elsif @host_picked_numbers.include? number %>
   <div class='host_doughnut'></div>
-<% else %>
-  <%= link_to game_create_path(id: number.to_s), method: :post do %>
+<% else %>  
+  <%= link_to game_create_path(id: number.to_s), remote: true, method: :post do %>
     <div class='unpicked'></div>
   <% end %>
 <% end %>
+</div>

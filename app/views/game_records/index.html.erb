@@ -1,3 +1,9 @@
+<p class="lead">    
+  <%= link_to game_new_path, class: 'btn btn-primary btn-lg' do %>
+  <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
+  Play Game
+  <% end %>
+</p>
 
 <ul class="nav nav-tabs">
     <% params[:tab] = 'TIE' if !params[:tab] %>
