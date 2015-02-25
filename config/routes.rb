@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   post 'game/create', to: 'game#create'
   get 'game/over', to: 'game#over' 
   get 'game/new', to: 'game#new'
+  get 'game/about', to: 'game#about'
  
   resources :game_records, only: [:create, :index]
   resources :users

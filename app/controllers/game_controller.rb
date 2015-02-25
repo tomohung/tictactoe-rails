@@ -64,6 +64,9 @@ class GameController < ApplicationController
     end
   end
 
+  def about
+  end
+
 private
   def host_pick
     @board.player_to_pick(0) if !@board.current_user_is_user1?
