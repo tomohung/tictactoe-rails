@@ -3,8 +3,15 @@
 <div>
   <h4>
     <% if logged_in? %>
-      <%= link_to save_label, game_records_path(steps: @board.steps, status: @message), class: 'btn btn-danger', method: :post %>
-      <%= link_to 'Keep Attack', game_new_path, class: 'btn btn-primary' if @message == 'TIE' %> 
+      <%= form_tag game_records_path do %>
+        <%= hidden_field_tag :steps, @board.steps%>
+        <%= hidden_field_tag :status, @message %>
+         
+        <%= submit_tag save_label, class: 'btn btn-danger' %>
+        <%= link_to 'Keep Attack', game_new_path, class: 'btn btn-primary' if @message == 'TIE' %> 
+      <% end %>
+
+      
     <% else %>
       <%= link_to 'Login to Continue', login_path, class: 'btn btn-primary' %>
       <%= link_to 'Register', new_user_path, class: 'btn btn-danger' %>

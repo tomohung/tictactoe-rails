@@ -1,5 +1,6 @@
 class GameRecordsController < ApplicationController
   def create
+    binding.pry
     if logged_in?
       record = current_user.game_records.new
       record.attack_times = params[:steps]
