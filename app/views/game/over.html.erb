@@ -2,7 +2,13 @@
 <% save_label = @board.game_is_over? !=0 ? 'Save Record' : 'Give Up' %>
 <div>
   <h4>
-    <%= link_to save_label, game_records_path(steps: @board.steps, status: @message), class: 'btn btn-danger', method: :post %>
-    <%= link_to 'Keep Attack', game_new_path, class: 'btn btn-primary' if @message == 'TIE' %> 
+    <% if logged_in? %>
+      <%= link_to save_label, game_records_path(steps: @board.steps, status: @message), class: 'btn btn-danger', method: :post %>
+      <%= link_to 'Keep Attack', game_new_path, class: 'btn btn-primary' if @message == 'TIE' %> 
+    <% else %>
+      <%= link_to 'Login to Continue', login_path, class: 'btn btn-primary' %>
+      <%= link_to 'Register', new_user_path, class: 'btn btn-danger' %>
+    <% end %>
+    
   </h4>
 </div>

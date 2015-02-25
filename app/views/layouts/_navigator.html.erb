@@ -3,27 +3,50 @@
 
     <h3 class="masthead-brand">
       <%= link_to root_path do %>
+        <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
         Titan's Tic Tac Toe
       <% end %>
     </h3>
+ 
     <nav>
       <ul class="nav masthead-nav">
-        <li><%= link_to 'Hero Board', game_records_path %></li>
+        <li>
+          <%= link_to game_records_path do %>
+            <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+            Ladder
+          <% end %>
+        </li>
         <% if logged_in? %>
-          <li> <%= link_to 'New Game', game_new_path %></li>  
+          <li> 
+            <%= link_to game_new_path do %>
+              <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
+              Play
+            <% end %>
+          </li>  
           <li>
             <%= link_to user_path(current_user) do %>
-              <%= current_user.username %>
+            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+            <%= current_user.username %>
             <% end %>
           </li>
-          <li><%= link_to 'Logout', logout_path, method: :delete %> </li>
+        <li>
+          <%= link_to  logout_path, method: :delete do %> 
+            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+            Logout
+          <% end %>
+        </li>
             
         <% else %>
-          <li><%= link_to 'Login', login_path %></li>
+          <li>
+            <%= link_to login_path do %>
+              <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+              Login
+            <% end %>
+          </li>
           <li><%= link_to 'Register', new_user_path %></li>
         <% end %>
         
-        <li><a href="#">About</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>About</a></li>
       </ul>
     </nav>
   </div>
